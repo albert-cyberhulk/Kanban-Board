@@ -5,7 +5,7 @@ class Card extends Component {
   render () {
     return (
       <div className="card">
-        <div className="card__title">{this.props.title}</div>
+        <i className="fa fa-folder card_title" aria-hidden="true">{this.props.title}</i>
         <div className="card__details">
           {this.props.description}
           <Checklist cardId={this.props.id} tasks={this.props.tasks} />
