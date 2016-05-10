@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Checklist from './checkList';
+import Checklist from './checklist';
 
 class Card extends Component {
   render () {

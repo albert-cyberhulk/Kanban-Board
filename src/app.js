@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from '../node_modules/react';
 import {render} from 'react-dom';
-import KanbanBoard from './kanbanboard';
+import KanbanBoard from './kanbanboard/kanbanboard';
 
 let cardList = [
   {

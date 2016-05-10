@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import List from './list';
+import List from '../list/list';
 
 class KanbanBoard extends Component {
   render () {

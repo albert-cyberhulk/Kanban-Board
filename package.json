@@ -1,24 +1,47 @@
 {
-  "name": "Kanban-Board",
-  "version": "0.1.3",
-  "description": "React application boilerplate",
+  "name": "react-boilerplate",
+  "version": "0.0.1",
+  "description": "Boilerplate project for ReactJS based applications",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albert-cyberhulk/React-Boilerplate.git"
+  },
+  "keywords": [
+    "ReactJs",
+    "Albert",
+    "Cyberhulk",
+    "Grunt",
+    "Bower",
+    "Babbel",
+    "JSX"
+  ],
   "author": "Albert Cyberhulk",
   "license": "ISC",
-  "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --progress",
-    "build": "NODE_ENV=production node_modules/.bin/webpack -p --progress --colors"
+  "bugs": {
+    "url": "https://github.com/albert-cyberhulk/React-Boilerplate/issues"
   },
+  "homepage": "https://github.com/albert-cyberhulk/React-Boilerplate#readme",
   "devDependencies": {
-    "babel-core": "~6.0.*",
-    "babel-loader": "~6.0.*",
-    "babel-preset-es2015": "~6.0.*",
-    "babel-preset-react": "~6.0.*",
-    "webpack": "~1.12.*",
-    "webpack-dev-server": "~1.12.*"
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.3.0",
+    "grunt": "^1.0.1",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-newer": "^1.2.0",
+    "grunt-notify": "^0.4.5",
+    "load-grunt-configs": "^1.0.0",
+    "load-grunt-tasks": "^3.5.0",
+    "time-grunt": "^1.3.0"
   },
   "dependencies": {
-    "react": "~0.14.*",
-    "react-bootstrap": "^0.29.3",
-    "react-dom": "~0.14.*"
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2"
   }
 }

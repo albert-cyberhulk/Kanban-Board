@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Card from './card';
+import Card from '../card/card';
+
 class List extends Component {
   render() {
     let cards = this.props.cards.map(function (card) {
