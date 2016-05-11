@@ -1,83 +1,107 @@
-*{
-  box-sizing: border-box;
+//colors
+$color_gallery_approx: #eee;
+$color_bright_gray_approx: #3b414c;
+$color_celeste_approx: #ccc;
+$white: #fff;
+$color_bon_jour_approx: #e5e5df;
+$black_25: rgba(0, 0, 0, 0.25);
+$color_alto_approx: #ddd;
+$color_sunglo_approx: #d66;
+
+//fonts
+$font_0: Helvetica Neue;
+$font_1: Helvetica;
+$font_2: Arial;
+$font_3: sans-serif;
+
+//@extend-elements
+//original selectors
+//html, body, #app
+%box-style {
+	height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
-html,body,#app {
-  height:100%; margin: 0; padding: 0;
-}
 
+* {
+	//Instead of the line below you could use @include box-sizing($bs)
+	box-sizing: border-box;
+}
+html {
+	@extend %box-style;
+}
 body {
-  background: #eee;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	@extend %box-style;
+	background: $color_gallery_approx;
+	font-family: $font_0, $font_1, $font_2, $font_3;
 }
-
-h1{
-  font-weight: 200;
-  color: #3b414c;
-  font-size: 20px;
+#app {
+	@extend %box-style;
 }
-
+h1 {
+	font-weight: 200;
+	color: $color_bright_gray_approx;
+	font-size: 20px;
+}
 ul {
-  list-style-type: none; padding: 0;
-  margin: 0;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
-
 .app {
-  white-space: nowrap;
-  height:100%;
+	white-space: nowrap;
+	height: 100%;
 }
-
 .list {
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  white-space: normal;
-  height: 100%;
-  width: 33%;
-  padding: 0 20px;
-  overflow: auto;
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	white-space: normal;
+	height: 100%;
+	width: 33%;
+	padding: 0 20px;
+	overflow: auto;
+	&:not(:last-child):after {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 1px;
+		height: 99%;
+		background: linear-gradient(to bottom, $color_gallery_approx 0, $color_celeste_approx 50%, $color_gallery_approx 100%) fixed;
+	}
 }
-
-.list:not(:last-child):after{
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 1px;
-  height: 99%;
-  background: linear-gradient(to bottom, #eee 0%, #ccc 50%, #eee 100%) fixed;
-}
-
 .card {
-  position: relative;
-  z-index: 1;
-  background: #fff;
-  width: 100%;
-  padding: 10px 10px 10px 15px;
-  margin: 0 0 10px 0;
-  overflow: auto;
-  border: 1px solid #e5e5df;
-  border-radius: 3px;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+	position: relative;
+	z-index: 1;
+	background: $white;
+	width: 100%;
+	padding: 10px 10px 10px 15px;
+	margin: 0 0 10px 0;
+	overflow: auto;
+	border: 1px solid $color_bon_jour_approx;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 3px;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: 0 1px 0 $black_25;
 }
-
 .card_title {
-  font-weight: bold;
-  border-bottom: solid 5px transparent;
+	font-weight: bold;
+	border-bottom: solid 5px transparent;
+	&:before {
+		display: inline-block;
+		width: 1em;
+		padding-right: 0.3em;
+	}
 }
-
-.card_title:before {
-  display: inline-block; width: 1em;
-  padding-right: 0.3em;
-}
-
 .checklist_task:first-child {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: dashed 1px #ddd;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: dashed 1px $color_alto_approx;
 }
-.checklist_task--remove:after{
-  display: inline-block;
-  color: #d66;
-  content: "+";
+.checklist_task--remove:after {
+	display: inline-block;
+	color: $color_sunglo_approx;
+	content: " +";
 }
