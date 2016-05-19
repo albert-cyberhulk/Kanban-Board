@@ -5,7 +5,7 @@ class Card extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-      showDetails: true
+      showDetails: false
     }
   }
   render () {
@@ -14,10 +14,10 @@ class Card extends Component {
       cardDetails = (
         <div className="card__details">
           {this.props.description}
-          <CheckList cardId={this.props.id} tasks={this.props.tasks} />
+          <Checklist cardId={this.props.id} tasks={this.props.tasks} />
         </div>
       ); 
-    };
+    }; 
     return (
       <div className="card">
         <div className="card__title">{this.props.title}</div>
