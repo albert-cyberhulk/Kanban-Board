@@ -10,21 +10,30 @@ class Card extends Component {
   }
   render () {
     let cardDetails;
-    if (this.state.showDetails) {
-      cardDetails = (
-        <div className="card__details">
+    var isHidden = this.state.showDetails ? "card__details slide-down" : "card__details slide-up";
+    return (
+      <div className="card">
+        <i className="fa fa-folder card_title" aria-hidden="true" onClick={()=>this.setState({showDetails: !this.state.showDetails})}>{this.props.title}</i>
+        <div className={isHidden}>
           {this.props.description}
           <Checklist cardId={this.props.id} tasks={this.props.tasks} />
         </div>
-      ); 
-    }; 
-    return (
-      <div className="card">
-        <div className="card__title">{this.props.title}</div>
-        {cardDetails}
       </div>
     );
   }
 }
 
+class Test extends Component {
+  constructor() {
+    super(...arguments);
+  }
+  render() {
+    return (
+      <h1>Hel</h1>
+    );
+  }
+}
+
 export default Card;
+
+
