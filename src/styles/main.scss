@@ -22,12 +22,15 @@ $font_3: sans-serif;
 	margin: 0;
 	padding: 0;
 }
+
 %dropdown-animate-fast {
 	transition: .2s linear all;
 }
+
 %dropdown-animate-slow {
 	transition: .5s linear all;
 }
+
 %dropdown-style {
 	overflow: hidden;
 }
@@ -36,31 +39,39 @@ $font_3: sans-serif;
 	//Instead of the line below you could use @include box-sizing($bs)
 	box-sizing: border-box;
 }
+
 html {
 	@extend %box-style;
 }
+
 body {
 	@extend %box-style;
+
 	background: $color_gallery_approx;
 	font-family: $font_0, $font_1, $font_2, $font_3;
 }
+
 #app {
 	@extend %box-style;
 }
+
 h1 {
 	font-weight: 200;
 	color: $color_bright_gray_approx;
 	font-size: 20px;
 }
+
 ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
 }
+
 .app {
 	white-space: nowrap;
 	height: 100%;
 }
+
 .list {
 	position: relative;
 	display: inline-block;
@@ -70,6 +81,7 @@ ul {
 	width: 33%;
 	padding: 0 20px;
 	overflow: auto;
+
 	&:not(:last-child):after {
 		content: "";
 		position: absolute;
@@ -80,6 +92,7 @@ ul {
 		background: linear-gradient(to bottom, $color_gallery_approx 0, $color_celeste_approx 50%, $color_gallery_approx 100%) fixed;
 	}
 }
+
 .card {
 	position: relative;
 	z-index: 1;
@@ -89,15 +102,19 @@ ul {
 	margin: 0 0 10px 0;
 	overflow: auto;
 	border: 1px solid $color_bon_jour_approx;
+
 	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
 	border-radius: 3px;
+
 	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
 	box-shadow: 0 1px 0 $black_25;
 }
+
 .card_title {
 	font-weight: bold;
 	border-bottom: solid 5px transparent;
 	cursor: pointer;
+
 	&:before {
 		display: inline-block;
 		width: 1em;
@@ -107,19 +124,26 @@ ul {
 
 .slide-down {
 	@extend %dropdown-style;
+	
 	@extend %dropdown-animate-slow;
-    max-height: 200px;
+
+	max-height: 200px;
 }
+
 .slide-up {
 	@extend %dropdown-style;
+
 	@extend %dropdown-animate-fast;
+
 	max-height: 0px;
 }
+
 .checklist_task:first-child {
 	margin-top: 10px;
 	padding-top: 10px;
 	border-top: dashed 1px $color_alto_approx;
 }
+
 .checklist_task--remove:after {
 	display: inline-block;
 	color: $color_sunglo_approx;

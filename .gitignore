@@ -43,3 +43,10 @@ dist
 
 #removing sass caches
 .sass-cache
+
+#removing sublime project sublime-workspace
+.sublime-project
+.sublime-project.sublime-workspace
+
+#removing webstorm files
+.idea
