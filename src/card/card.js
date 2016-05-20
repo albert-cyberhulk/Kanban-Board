@@ -14,20 +14,20 @@ class Card extends Component {
   }
 
   render() {
-    var isHidden = this.state.showDetails ? "card__details slide-down" : "card__details slide-up";
+
     return (
       <div className="card">
-        <i className="fa fa-folder card_title" aria-hidden="true"
-           onClick={this.toggleDetails.bind(this)}>
+        <div onClick={this.toggleDetails.bind(this)} className={this.state.showDetails ? "card_title folder-open" : "card_title folder-closed"}>
           {this.props.title}
-        </i>
-        <div className={isHidden}>
+        </div>
+        <div className={this.state.showDetails ? "card__details slide-down" : "card__details slide-up"}>
           {this.props.description}
           <Checklist cardId={this.props.id} tasks={this.props.tasks}/>
         </div>
       </div>
     );
   }
+
 }
 
 export default Card;

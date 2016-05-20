@@ -24,11 +24,22 @@ $font_3: sans-serif;
 }
 
 %dropdown-animate-fast {
-	transition: .2s linear all;
+	transition: .0s linear all;
 }
 
 %dropdown-animate-slow {
 	transition: .5s linear all;
+}
+
+@mixin font-icon($content) {
+  position: relative;
+  &:before {
+    content: $content;
+    font-family: FontAwesome;
+    position:absolute;
+    top:0;
+    left: 0px;
+  }
 }
 
 %dropdown-style {
@@ -102,29 +113,29 @@ ul {
 	margin: 0 0 10px 0;
 	overflow: auto;
 	border: 1px solid $color_bon_jour_approx;
-
-	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-	border-radius: 3px;
-
-	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-	box-shadow: 0 1px 0 $black_25;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 $black_25;
 }
 
 .card_title {
 	font-weight: bold;
 	border-bottom: solid 5px transparent;
 	cursor: pointer;
+  padding-left: 1em;
+}
 
-	&:before {
-		display: inline-block;
-		width: 1em;
-		padding-right: 0.3em;
-	}
+.folder-open {
+  @include font-icon("\f07c");
+}
+
+.folder-closed {
+  @include font-icon("\f07b");
 }
 
 .slide-down {
+
 	@extend %dropdown-style;
-	
+
 	@extend %dropdown-animate-slow;
 
 	max-height: 200px;
