@@ -6,7 +6,7 @@ let cardList = [
   {
     "id": 1,
     "title": "Card one title",
-    "description": "Card detailed description.",
+    "description": "Contribute to the Kanban board on Github, fork from [github](https://github.com/albert-cyberhulk/Kanban-Board)",
     "status": "todo",
     "tasks": [
       {
