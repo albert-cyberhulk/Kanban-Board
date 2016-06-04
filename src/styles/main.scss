@@ -24,7 +24,7 @@ $font_3: sans-serif;
 }
 
 %dropdown-animate-fast {
-	transition: .0s linear all;
+	transition: .2s linear all;
 }
 
 %dropdown-animate-slow {
@@ -37,8 +37,8 @@ $font_3: sans-serif;
     content: $content;
     font-family: FontAwesome;
     position:absolute;
-    top:0;
-    left: 0px;
+    top:2px;
+    left: -5px;
   }
 }
 @mixin card-border ($colour) {
