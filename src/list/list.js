@@ -9,6 +9,7 @@ class List extends Component {
         key={card.id}
         title={card.title}
         description={card.description}
+        status = {card.status}
         tasks={card.tasks} />
     });
     return (
