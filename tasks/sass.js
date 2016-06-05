@@ -11,14 +11,8 @@ module.exports = {
     options: {
       sourcemap: 'inline'
     },
-    files: [{
-      expand: true,
-      cwd: '<%= project.src%>',
-      src: [
-        '**/*.scss'
-      ],
-      dest: '<%= project.temp%>',
-      ext: '.css'
-    }]
+    files: {
+      '<%= project.temp %>/app.css': '<%= project.src %>/app/app.scss'
+    }
   }
 };

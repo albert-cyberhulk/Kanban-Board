@@ -29,7 +29,6 @@ module.exports = function (grunt) {
   grunt.registerTask('process:dev', [
     'newer:browserify:dev',
     'newer:sass:dev',
-    'newer:copy:temp',
     'newer:copy:dev',
     'notify:processDev'
   ]);

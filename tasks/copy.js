@@ -13,7 +13,7 @@
 // Copies files to places other tasks can use
 // For dist copy package json
 module.exports = {
-  temp: {
+  dev: {
     files: [
       {
         expand: true,
@@ -25,25 +25,6 @@ module.exports = {
           '.htaccess',
           '**/fonts/*',
           '**/*.html',
-          'index.html'
-        ]
-      }
-    ]
-  },
-  dev: {
-    files: [
-      {
-        expand: true,
-        dot: true,
-        cwd: '<%= project.temp %>',
-        dest: '<%= project.dev %>',
-        src: [
-          '**/images/*',
-          '.htaccess',
-          '**/fonts/*',
-          '**/*.html',
-          '**/*.js',
-          '**/*.css',
           'index.html'
         ]
       }

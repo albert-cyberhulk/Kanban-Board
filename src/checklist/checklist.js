@@ -12,11 +12,16 @@ class Checklist extends Component {
       )
     });
     return (
-      <ul className="cardChecklist">
-        {tasks}
-      </ul>
-    );
-  }
-}
+      <div className="checklist">
+        <ul className="cardChecklist">
+          {tasks}
+        </ul>
+        <input
+          type="text"
+          className="checklist--add-task"
+          placeholder="Type then hit Enter to add a task"></input>
+      </div>
+  );
+  }}
 
-export default Checklist;
+  export default Checklist;

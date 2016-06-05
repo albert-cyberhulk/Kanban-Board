@@ -12,7 +12,7 @@ module.exports = {
     hostname: 'localhost',
     livereload: 35729,
     base: {
-      path: '<%= project.dev %>',
+      path: '<%= project.temp %>',
         options: {
           index: 'index.html'
         }
@@ -22,7 +22,7 @@ module.exports = {
     options: {
       open: true,
       base: [
-        '<%= project.dev %>'
+        '<%= project.temp %>'
       ]
     }
   }
