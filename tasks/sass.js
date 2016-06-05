@@ -12,7 +12,8 @@ module.exports = {
       sourcemap: 'inline'
     },
     files: {
-      '<%= project.temp %>/app.css': '<%= project.src %>/app/app.scss'
+      '<%= project.temp %>/app.css': '<%= project.src %>/app/app.scss',
+      '<%= project.temp %>/vendor.css': '<%= project.src %>/app/vendor.scss'
     }
   }
 };

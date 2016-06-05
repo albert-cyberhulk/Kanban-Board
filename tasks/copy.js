@@ -25,6 +25,7 @@ module.exports = {
           '.htaccess',
           '**/fonts/*',
           '**/*.html',
+          '**/fonts/*',
           'index.html'
         ]
       }

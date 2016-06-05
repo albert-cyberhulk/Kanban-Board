@@ -27,9 +27,9 @@ module.exports = function (grunt) {
 
   // Process of dev files to group
   grunt.registerTask('process:dev', [
-    'newer:browserify:dev',
-    'newer:sass:dev',
-    'newer:copy:dev',
+    'browserify:dev',
+    'sass:dev',
+    'copy:dev',
     'notify:processDev'
   ]);
 
