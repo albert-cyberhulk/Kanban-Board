@@ -1,0 +1,20 @@
+.list {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  height: 100%;
+  width: 33%;
+  padding: 0 20px;
+  overflow: auto;
+
+  &:not(:last-child):after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 99%;
+    background: linear-gradient(to bottom, $color_gallery_approx 0, $color_celeste_approx 50%, $color_gallery_approx 100%) fixed;
+  }
+}

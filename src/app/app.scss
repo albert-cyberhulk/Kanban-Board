@@ -1,39 +1,10 @@
 @import "variables";
+@import "mixins";
+@import "extends";
+@import "../list/list";
+@import "../card/card";
 @import "../checklist/checklist";
 
-//@extend-elements
-//original selectors
-//html, body, #app
-%box-style {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
-
-%dropdown-animate-fast {
-	transition: .2s linear all;
-}
-
-%dropdown-animate-slow {
-	transition: .5s linear all;
-}
-
-@mixin font-icon($content) {
-  position: relative;
-  &:before {
-    content: $content;
-    font-family: FontAwesome;
-    position:absolute;
-    top:2px;
-    left: -5px;
-  }
-}
-@mixin card-border ($colour) {
-  border-left: 6px solid $colour;
-}
-%dropdown-style {
-	overflow: hidden;
-}
 
 * {
 	//Instead of the line below you could use @include box-sizing($bs)
@@ -72,88 +43,3 @@ ul {
 	height: 100%;
 }
 
-.list {
-	position: relative;
-	display: inline-block;
-	vertical-align: top;
-	white-space: normal;
-	height: 100%;
-	width: 33%;
-	padding: 0 20px;
-	overflow: auto;
-
-	&:not(:last-child):after {
-		content: "";
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: 1px;
-		height: 99%;
-		background: linear-gradient(to bottom, $color_gallery_approx 0, $color_celeste_approx 50%, $color_gallery_approx 100%) fixed;
-	}
-}
-
-.card {
-	position: relative;
-	z-index: 1;
-	background: $white;
-	width: 100%;
-	padding: 10px 10px 10px 15px;
-	margin: 0 0 10px 0;
-	overflow: auto;
-	border: 1px solid $color_bon_jour_approx;
-  border-radius: 3px;
-  box-shadow: 0 1px 0 $black_25;
-}
-.card-to-do {
-  @include card-border(blue);
-}
-.card-in-progress {
-  @include card-border(yellow);
-}
-.card-done {
-  @include card-border(green);
-}
-.card_title {
-	font-weight: bold;
-	border-bottom: solid 5px transparent;
-	cursor: pointer;
-  padding-left: 1em;
-}
-
-.folder-open {
-  @include font-icon("\f07c");
-}
-
-.folder-closed {
-  @include font-icon("\f07b");
-}
-
-.slide-down {
-
-	@extend %dropdown-style;
-
-	@extend %dropdown-animate-slow;
-
-	max-height: 200px;
-}
-
-.slide-up {
-	@extend %dropdown-style;
-
-	@extend %dropdown-animate-fast;
-
-	max-height: 0px;
-}
-
-.checklist_task:first-child {
-	margin-top: 10px;
-	padding-top: 10px;
-	border-top: dashed 1px $color_alto_approx;
-}
-
-.checklist_task--remove:after {
-	display: inline-block;
-	color: $color_sunglo_approx;
-	content: " +";
-}
