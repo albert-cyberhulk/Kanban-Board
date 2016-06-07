@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 class Checklist extends Component {
   render() {
@@ -27,13 +27,19 @@ class Checklist extends Component {
               <div className="input-group-addon">
                 <i className="fa fa-plus"></i>
               </div>
-              <input type="text" className="form-control add-task-input input-lg"
-                     id="exampleInputAmount" placeholder="Type then hit Enter to add a task" />
+              <input type="text"
+                     className="form-control add-task-input input-lg"
+                     id="exampleInputAmount"
+                     placeholder="Type then hit Enter to add a task"/>
             </div>
           </div>
         </form>
       </div>
-  );
-  }}
-
-  export default Checklist;
+    );
+  }
+}
+Checklist.propTypes = {
+  cardId: PropTypes.number,
+  tasks: PropTypes.arrayOf(PropTypes.object)
+};
+export default Checklist;
