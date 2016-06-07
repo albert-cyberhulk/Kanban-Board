@@ -3,16 +3,16 @@ module.exports = {
   js: {
     options: { livereload: true },
     files: ['<%= project.src %>/**/*.js'],
-    tasks: ['process:dev']
+    tasks: ['browserify:dev']
   },
   sass: {
     options: { livereload: true },
     files: ['<%= project.src %>/**/*.scss'],
-    tasks: ['process:dev']
+    tasks: ['sass:dev']
   },
   html: {
     options: { livereload: true },
     files: ['<%= project.src %>/index.html'],
-    tasks: ['process:dev']
+    tasks: ['copy:dev']
   }
 };

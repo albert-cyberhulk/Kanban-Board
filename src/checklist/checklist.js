@@ -8,7 +8,9 @@ class Checklist extends Component {
         <li className="task" key={task.id}>
           <input type="checkbox" defaultChecked={task.done} id={curId}/>
           <label htmlFor={curId}>{task.name}</label>
-          <a href="#" className="task-remove"/>
+          <a href="#" className="task-remove">
+            <i className="fa fa-trash"></i>
+          </a>
         </li>
       )
     });
@@ -25,7 +27,7 @@ class Checklist extends Component {
               <div className="input-group-addon">
                 <i className="fa fa-plus"></i>
               </div>
-              <input type="text" className="form-control add-task-input"
+              <input type="text" className="form-control add-task-input input-lg"
                      id="exampleInputAmount" placeholder="Type then hit Enter to add a task" />
             </div>
           </div>
