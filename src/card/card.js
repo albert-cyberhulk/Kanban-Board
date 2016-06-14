@@ -15,7 +15,7 @@ let titlePropType = function(props, propName, componentName) {
 
 class Card extends Component {
   constructor() {
-    super(...arguments);
+    super();
     this.state = {
       showDetails: false
     };
