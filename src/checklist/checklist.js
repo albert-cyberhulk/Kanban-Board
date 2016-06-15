@@ -3,14 +3,18 @@ import React, {Component, PropTypes} from 'react';
 class Checklist extends Component {
   render() {
     let tasks = this.props.tasks.map((task, taskIndex) => {
+      var curId = "task" + task.id;
       return (
         <li className="task" key={task.id}>
           <input
+            id={curId}
             type="checkbox"
             checked={task.done}
             onChange={this.props.taskCallbacks.toggle.bind(null, this.props.cardId, task.id, taskIndex)}/>
-          <label htmlFor={task.id}>{task.name}</label>
-          <a href="#" className="task-remove">
+          <label htmlFor={curId}>{task.name}</label>
+          <a href="#"
+             className="task-remove"
+             onClick={this.props.taskCallbacks.delete.bind(null, this.props.cardId, task.id, taskIndex)}>
             <i className="fa fa-trash"></i>
           </a>
         </li>
