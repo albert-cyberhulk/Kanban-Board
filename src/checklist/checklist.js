@@ -1,8 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 
 class Checklist extends Component {
+  checkClick(evt) {
+    alert('clicked');
+  }
   render() {
-    let tasks = this.props.tasks.map((task, taskIndex) => {
+    let tasks = this.props.tasks.map(function(task, taskIndex)  {
       var curId = "task" + task.id;
       return (
         <li className="task" key={task.id}>
@@ -19,7 +22,7 @@ class Checklist extends Component {
           </a>
         </li>
       )
-    });
+    }.bind(this));
     return (
       <div className="checklist">
         <ul className="cardChecklist">
