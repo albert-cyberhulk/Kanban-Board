@@ -2,12 +2,14 @@ import React, {Component, PropTypes} from 'react';
 
 class Checklist extends Component {
   render() {
-    let tasks = this.props.tasks.map(function (task) {
-      var curId = "task" + task.id;
+    let tasks = this.props.tasks.map((task, taskIndex) => {
       return (
         <li className="task" key={task.id}>
-          <input type="checkbox" defaultChecked={task.done} id={curId}/>
-          <label htmlFor={curId}>{task.name}</label>
+          <input
+            type="checkbox"
+            checked={task.done}
+            onChange={this.props.taskCallbacks.toggle.bind(null, this.props.cardId, task.id, taskIndex)}/>
+          <label htmlFor={task.id}>{task.name}</label>
           <a href="#" className="task-remove">
             <i className="fa fa-trash"></i>
           </a>

@@ -44,7 +44,10 @@ class Card extends Component {
         </div>
         <div className={this.state.showDetails ? "card__details slide-down" : "card__details slide-up"}>
           <span dangerouslySetInnerHTML={{__html:marked(this.props.description)}}></span>
-          <Checklist cardId={this.props.id} tasks={this.props.tasks}/>
+          <Checklist
+            cardId={this.props.id}
+            tasks={this.props.tasks}
+            taskCallbacks={this.props.taskCallbacks}/>
         </div>
       </div>
     );
@@ -58,7 +61,8 @@ Card.propTypes = {
   description: PropTypes.string,
   color: PropTypes.string,
   tasks: PropTypes.arrayOf(PropTypes.object),
-  status: PropTypes.string
+  status: PropTypes.string,
+  taskCallbacks: PropTypes.object
 };
 
 export default Card;
