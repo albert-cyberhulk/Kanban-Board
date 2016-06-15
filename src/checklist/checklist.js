@@ -29,12 +29,12 @@ class Checklist extends Component {
           <div className="form-group">
             <label className="sr-only" for="exampleInputAmount">
               Amount (in dollars)</label>
-            <div className="input-group">
+            <div className="input-group ">
               <div className="input-group-addon">
                 <i className="fa fa-plus"></i>
               </div>
               <input type="text"
-                     className="form-control add-task-input input-lg"
+                     className="form-control add-task-input input-lg checklist-input"
                      id="exampleInputAmount"
                      placeholder="Type then hit Enter to add a task"/>
             </div>

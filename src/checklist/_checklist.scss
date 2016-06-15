@@ -9,7 +9,10 @@
   color: $color_sunglo_approx;
   content: " +";
 }
-
+.checklist-input {
+  height: 20px !important;
+  display: block;
+}
 .add-task {
   margin-top: 10px;
 
