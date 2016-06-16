@@ -13,6 +13,9 @@
   height: 20px !important;
   display: block;
 }
+.task .done {
+  text-decoration: line-through;
+}
 .add-task {
   margin-top: 10px;
 

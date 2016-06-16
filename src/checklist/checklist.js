@@ -15,9 +15,11 @@ class Checklist extends Component {
           <input
             id={curId}
             type="checkbox"
-
+            defaultChecked={task.done}
             onChange={this.props.taskCallbacks.toggle.bind(null, this.props.cardId, task.id, taskIndex)}/>
-          <label htmlFor={curId}>{task.name}</label>
+          <label htmlFor={curId} className={task.done? 'task done': 'task'}>
+            {task.name}
+          </label>
           <a href="#"
              className="task-remove"
              onClick={this.props.taskCallbacks.delete.bind(null, this.props.cardId, task.id, taskIndex)}>

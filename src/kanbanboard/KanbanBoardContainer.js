@@ -53,7 +53,30 @@ class KanbanBoardContainer extends Component {
   }
 
   toggleTask(cardId, taskId, taskIndex) {
-    alert("toggleTask", taskId);
+    // Find the index of the card
+    let cardIndex = this.state.cards.findIndex((card) => card.id === cardId);
+    // Save a reference to the task' done value to its opposite
+    let newDoneValue;
+    let nextState = update(this.state.cards, {
+      [cardIndex]: {
+        tasks:  {
+          [taskIndex]: {
+            done: {$apply: (done) => {
+              newDoneValue = !done;
+              return newDoneValue;
+            }}
+          }
+        }
+      }
+    });
+    // set the component state to the mutated object
+    this.setState({cards: nextState});
+    // Call the API to toggle the task on the server
+    /*fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
+      method: 'put',
+      headers: API_HEADERS,
+      body: JSON.stringify({done:newDoneValue})
+    });*/
   }
 
   render() {
