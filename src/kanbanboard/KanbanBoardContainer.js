@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import KanbanBoard from './KanbanBoard';
 import 'whatwg-fetch';
+import 'babel-polyfill';
+import update from 'react-addons-update';
 
 const API_URL = "https://private-07a0d-kanbanboard.apiary-mock.com/cards";
 const API_HEADERS = {
@@ -33,7 +35,21 @@ class KanbanBoardContainer extends Component {
   }
 
   deleteTask(cardId, taskId, taskIndex) {
-    alert("deleteTask", taskId);
+    // Find the index of the card
+    let cardIndex = this.state.cards.findIndex((card) => card.id === cardId);
+    // Create a new object without the task
+    let nextState = update(this.state.cards, {
+      [cardIndex]: {
+        tasks: {$splice: [[taskIndex, 1]]}
+      }
+    });
+    // set the component state to the mutated object
+    this.setState({cards: nextState});
+    // Call the API to remove the task on the server
+    /*fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
+      method: 'delete',
+      headers: API_HEADERS
+    });*/
   }
 
   toggleTask(cardId, taskId, taskIndex) {

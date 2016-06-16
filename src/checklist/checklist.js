@@ -15,7 +15,7 @@ class Checklist extends Component {
           <input
             id={curId}
             type="checkbox"
-            checked={task.done}
+
             onChange={this.props.taskCallbacks.toggle.bind(null, this.props.cardId, task.id, taskIndex)}/>
           <label htmlFor={curId}>{task.name}</label>
           <a href="#"
