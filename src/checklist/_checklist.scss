@@ -1,14 +1,14 @@
-.checklist_task:first-child {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: dashed 1px $color_alto_approx;
+.checklist {
+  overflow-y: hidden;
+  height: 100%;
+  max-height: 100%;
+  display: block;
+}
+ul.cardChecklist {
+  max-height: 200px;
+  overflow-y: scroll;
 }
 
-.checklist_task--remove:after {
-  display: inline-block;
-  color: $color_sunglo_approx;
-  content: " +";
-}
 .checklist-input {
   height: 20px !important;
   display: block;

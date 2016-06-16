@@ -34,7 +34,7 @@ class KanbanBoardContainer extends Component {
     // Find the index of the card
     let cardIndex = this.state.cards.findIndex((card) => card.id = cardId);
     // Create a new task with the given name and a temporary ID
-    let newTask = {id: Date.now(), name: taskName, done: false};
+    let newTask = {id: Math.floor(Math.random() * 1000), name: taskName, done: false};
     // Create a new object and push the new task to the array of tasks
     let nextState = update(this.state.cards, {
       [cardIndex]: {
