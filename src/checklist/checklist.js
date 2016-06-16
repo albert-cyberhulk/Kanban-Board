@@ -1,8 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 
 class Checklist extends Component {
-  checkClick(evt) {
-    alert('clicked');
+  checkInputKeyPress(evt) {
+    if (evt.key === 'Enter') {
+      this.props.taskCallbacks.add(this.props.cardId, evt.target.value);
+      evt.target.value = '';
+    }
   }
   render() {
     let tasks = this.props.tasks.map(function(task, taskIndex)  {
@@ -39,7 +42,8 @@ class Checklist extends Component {
               <input type="text"
                      className="form-control add-task-input input-lg checklist-input"
                      id="exampleInputAmount"
-                     placeholder="Type then hit Enter to add a task"/>
+                     placeholder="Type then hit Enter to add a task"
+                     onKeyPress={this.checkInputKeyPress.bind(this)}/>
             </div>
           </div>
         </form>
