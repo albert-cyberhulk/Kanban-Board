@@ -27,8 +27,3 @@ KanbanBoard.propTypes = {
   taskCallbacks: PropTypes.object
 };
 export default KanbanBoard;
-
-
-
-
-

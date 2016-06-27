@@ -29,7 +29,7 @@ class KanbanBoardContainer extends Component {
         console.log('Error fetching and parsing data', error);
       })
   }
-
+  
   addTask(cardId, taskName) {
     // Find the index of the card
     let cardIndex = this.state.cards.findIndex((card) => {
