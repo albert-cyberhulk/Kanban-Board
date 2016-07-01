@@ -3,7 +3,6 @@ import KanbanBoard from './KanbanBoard';
 import 'whatwg-fetch';
 import 'babel-polyfill';
 import update from 'react-addons-update';
-import store from 'store';
 
 const API_URL = "store.json";
 const API_HEADERS = {
@@ -20,15 +19,26 @@ class KanbanBoardContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(API_URL, {headers: API_HEADERS}).then((response) =>response.json())
-      .then((responseData) => {
-        this.setState({
-          cards: responseData
+    // for local development purpose we check if localstorage
+    // item exists we do not perform additional HTTP request
+    if (localStorage.getItem("cards") === null) {
+      fetch(API_URL, {headers: API_HEADERS}).then((response) =>response.json())
+        .then((responseData) => {
+          this.setState({
+            cards: responseData
+          });
+          // for local development using localstorage
+          localStorage.setItem('cards', JSON.stringify(this.state.cards));
+        })
+        .catch((error) => {
+          console.log('Error fetching and parsing data', error);
         });
-      })
-      .catch((error) => {
-        console.log('Error fetching and parsing data', error);
+    } else {
+      this.setState({
+        cards: JSON.parse(localStorage.getItem('cards'))
       });
+    }
+
   }
 
   addTask(cardId, taskName) {
@@ -46,6 +56,8 @@ class KanbanBoardContainer extends Component {
     });
     // set the component state to the mutated object
     this.setState({cards: nextState});
+    // for local development using localstorage
+    localStorage.setItem('cards', JSON.stringify(this.state.cards));
     // Call the API to add the task on the server
     /*fetch(`${API_URL}/cards/${cardId}/tasks`, {
       method: 'post',
@@ -72,6 +84,8 @@ class KanbanBoardContainer extends Component {
     });
     // set the component state to the mutated object
     this.setState({cards: nextState});
+    // for local development using localstorage
+    localStorage.setItem('cards', JSON.stringify(this.state.cards));
     // Call the API to remove the task on the server
     /*fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
       method: 'delete',
@@ -98,6 +112,8 @@ class KanbanBoardContainer extends Component {
     });
     // set the component state to the mutated object
     this.setState({cards: nextState});
+    // for local development using localstorage
+    localStorage.setItem('cards', JSON.stringify(this.state.cards));
     // Call the API to toggle the task on the server
     /*fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
       method: 'put',
