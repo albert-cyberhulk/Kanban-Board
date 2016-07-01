@@ -1,0 +1,39 @@
+[
+  {
+    "id": 3231,
+    "title": "Card one title",
+    "description": "Contribute to the Kanban board on Github, fork from [github](https://github.com/albert-cyberhulk/Kanban-Board)",
+    "status": "todo",
+    "tasks": [
+      {
+        "id": 213212332,
+        "name": "Task one",
+        "done": true
+      },
+      {
+        "id": 898989,
+        "name": "Task two",
+        "done": false
+      },
+      {
+        "id": 928777,
+        "name": "Task three",
+        "done": false
+      }
+    ]
+  },
+  {
+    "id": 43243,
+    "title": "Card Two title",
+    "description": "Card detailed description",
+    "status": "in-progress",
+    "tasks": []
+  },
+  {
+    "id": 6654543,
+    "title": "Card Three title",
+    "description": "Card detailed description",
+    "status": "done",
+    "tasks": []
+  }
+]

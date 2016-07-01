@@ -26,7 +26,8 @@ module.exports = {
           '**/fonts/*',
           '**/*.html',
           '**/fonts/*',
-          'index.html'
+          'index.html',
+          '**/*.json'
         ]
       }
     ]

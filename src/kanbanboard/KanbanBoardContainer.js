@@ -3,8 +3,9 @@ import KanbanBoard from './KanbanBoard';
 import 'whatwg-fetch';
 import 'babel-polyfill';
 import update from 'react-addons-update';
+import store from 'store';
 
-const API_URL = "https://private-07a0d-kanbanboard.apiary-mock.com/cards";
+const API_URL = "store.json";
 const API_HEADERS = {
   'Content-Type': 'application/json',
 };
@@ -27,9 +28,9 @@ class KanbanBoardContainer extends Component {
       })
       .catch((error) => {
         console.log('Error fetching and parsing data', error);
-      })
+      });
   }
-  
+
   addTask(cardId, taskName) {
     // Find the index of the card
     let cardIndex = this.state.cards.findIndex((card) => {
