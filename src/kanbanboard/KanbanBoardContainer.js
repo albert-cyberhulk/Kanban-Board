@@ -124,12 +124,37 @@ class KanbanBoardContainer extends Component {
     }
   }
 
+  updateCardPosition(cardId, afterId) {
+    // Only proceed if hovering over a different card
+    if (cardId !== afterId) {
+      // Find the index of the card
+      let cardIndex = this.findIndex(cardId);
+      // Get the current card
+      let card = this.state.cards[cardIndex];
+      // Find the index of the card the user is hovering over
+      let afterIndex = this.state.cards.findIndex((card)=> card.id === afterId);
+      // Use splice to remove the card and reinsert it at the new index
+      this.setState(update(this.state, {
+        cards: {
+          $splice: [
+            [cardIndex, 1],
+            [afterIndex, 0, card]
+          ]
+        }
+      }));
+    }
+  }
+
   render() {
     return <KanbanBoard cards={this.state.cards}
     taskCallbacks={{
       toggle: this.toggleTask.bind(this),
       delete: this.deleteTask.bind(this),
       add: this.addTask.bind(this)
+    }}
+    cardCallbacks={{
+      updateStatus: this.updateCardStatus.bind(this),
+      updatePosition: this.updateCardPosition.bind(this)
     }}/>
   }
 
