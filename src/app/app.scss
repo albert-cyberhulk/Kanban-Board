@@ -1,6 +1,7 @@
 @import "variables";
 @import "mixins";
 @import "extends";
+@import "animations";
 @import "../list/list";
 @import "../card/card";
 @import "checkbox";
@@ -50,4 +51,3 @@ ul {
 .fa-trash {
   color: $color_delete;
 }
-

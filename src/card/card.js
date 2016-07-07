@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Checklist from '../checklist/checklist';
 import marked from 'marked';
 
@@ -26,6 +27,7 @@ class Card extends Component {
   }
 
   render() {
+    // Implementing card side colour
     var curCardClass = "";
     switch (this.props.status) {
       case 'todo':
@@ -37,18 +39,29 @@ class Card extends Component {
       default:
         curCardClass = 'card card-done';
     }
-    return (
-      <div className={curCardClass}>
-        <div onClick={this.toggleDetails.bind(this)} className={this.state.showDetails ? "card_title folder-open" : "card_title folder-closed"}>
-          {this.props.title}
-        </div>
-        <div className={this.state.showDetails ? "card__details slide-down" : "card__details slide-up"}>
+    // Implementing the card details
+    let cardDetails;
+    if (this.state.showDetails) {
+      cardDetails = (
+        <div className="card-details">
           <span dangerouslySetInnerHTML={{__html:marked(this.props.description)}}></span>
           <Checklist
             cardId={this.props.id}
             tasks={this.props.tasks}
             taskCallbacks={this.props.taskCallbacks}/>
         </div>
+      );
+    }
+    return (
+      <div className={curCardClass}>
+        <div onClick={this.toggleDetails.bind(this)} className={this.state.showDetails ? "card_title folder-open" : "card_title folder-closed"}>
+          {this.props.title}
+        </div>
+        <ReactCSSTransitionGroup transitionName="toggle"
+                                transitionEnterTimeout={250}
+                                transitionLeaveTimeout={250}>
+          {cardDetails}
+        </ReactCSSTransitionGroup>
       </div>
     );
   }

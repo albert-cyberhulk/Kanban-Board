@@ -33,20 +33,3 @@
 .folder-closed {
   @include font-icon("\f07b");
 }
-
-.slide-down {
-
-  @extend %dropdown-style;
-
-  @extend %dropdown-animate-slow;
-
-  max-height: 200px;
-}
-
-.slide-up {
-  @extend %dropdown-style;
-
-  @extend %dropdown-animate-fast;
-
-  max-height: 0px;
-}
