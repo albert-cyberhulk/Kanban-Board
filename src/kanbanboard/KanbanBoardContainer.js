@@ -18,6 +18,14 @@ class KanbanBoardContainer extends Component {
     }
   }
 
+  findIndex(cardId) {
+    return this.state.cards.findIndex((card) => card.id === cardId);
+  }
+
+  updateStorage() {
+    localStorage.setItem('cards', JSON.stringify(this.state.cards));
+  }
+
   componentDidMount() {
     // for local development purpose we check if localstorage
     // item exists we do not perform additional HTTP request
@@ -28,7 +36,7 @@ class KanbanBoardContainer extends Component {
             cards: responseData
           });
           // for local development using localstorage
-          localStorage.setItem('cards', JSON.stringify(this.state.cards));
+          this.updateStorage();
         })
         .catch((error) => {
           console.log('Error fetching and parsing data', error);
@@ -39,10 +47,6 @@ class KanbanBoardContainer extends Component {
       });
     }
 
-  }
-
-  findIndex(cardId) {
-    return this.state.cards.findIndex((card) => card.id === cardId);
   }
 
   addTask(cardId, taskName) {
@@ -59,7 +63,7 @@ class KanbanBoardContainer extends Component {
     // set the component state to the mutated object
     this.setState({cards: nextState});
     // for local development using localstorage
-    localStorage.setItem('cards', JSON.stringify(this.state.cards));
+    this.updateStorage();
   }
 
   deleteTask(cardId, taskId, taskIndex) {
@@ -74,7 +78,7 @@ class KanbanBoardContainer extends Component {
     // set the component state to the mutated object
     this.setState({cards: nextState});
     // for local development using localstorage
-    localStorage.setItem('cards', JSON.stringify(this.state.cards));
+    this.updateStorage();
   }
 
   toggleTask(cardId, taskId, taskIndex) {
@@ -97,13 +101,27 @@ class KanbanBoardContainer extends Component {
     // set the component state to the mutated object
     this.setState({cards: nextState});
     // for local development using localstorage
-    localStorage.setItem('cards', JSON.stringify(this.state.cards));
+    this.updateStorage();
   }
 
   updateCardStatus(cardId, listId) {
     // Find the index of the card
     let cardIndex = this.findIndex(cardId);
-    
+    // Get the current card
+    let card = this.state.cards[cardIndex];
+    // Only proceed if hovering over a different list
+    if (card.status !== listId) {
+      // set the component state to the mutated object
+      this.setState(update(this.state, {
+        cards: {
+          [cardIndex]: {
+            status: {$set: listId}
+          }
+        }
+      }));
+      // for local development using localstorage
+      this.updateStorage();
+    }
   }
 
   render() {
