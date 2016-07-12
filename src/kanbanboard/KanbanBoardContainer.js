@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import KanbanBoard from './KanbanBoard';
 import 'whatwg-fetch';
 import 'babel-polyfill';
+import throttle from '../utils/throttle';
 import update from 'react-addons-update';
 
 const API_URL = "store.json";
@@ -16,6 +17,18 @@ class KanbanBoardContainer extends Component {
     this.state = {
       cards: []
     }
+    // Only call updateCardStatus when arguments change
+    this.updateCardStatus = throttle(this.updateCardStatus.bind(this));
+    // Call updateCardPosition at max every 500ms (or when arguments change)
+    this.updateCardPosition = throttle(this.updateCardPosition.bind(this), 500);
+  }
+
+  findIndex(cardId) {
+    return this.state.cards.findIndex((card) => card.id === cardId);
+  }
+
+  updateStorage() {
+    localStorage.setItem('cards', JSON.stringify(this.state.cards));
   }
 
   componentDidMount() {
@@ -28,7 +41,7 @@ class KanbanBoardContainer extends Component {
             cards: responseData
           });
           // for local development using localstorage
-          localStorage.setItem('cards', JSON.stringify(this.state.cards));
+          this.updateStorage();
         })
         .catch((error) => {
           console.log('Error fetching and parsing data', error);
@@ -43,9 +56,7 @@ class KanbanBoardContainer extends Component {
 
   addTask(cardId, taskName) {
     // Find the index of the card
-    let cardIndex = this.state.cards.findIndex((card) => {
-      return card.id === cardId;
-    });
+    let cardIndex = this.findIndex(cardId);
     // Create a new task with the given name and a temporary ID
     let newTask = {id: Math.floor(Math.random() * 1000), name: taskName, done: false};
     // Create a new object and push the new task to the array of tasks
@@ -57,25 +68,12 @@ class KanbanBoardContainer extends Component {
     // set the component state to the mutated object
     this.setState({cards: nextState});
     // for local development using localstorage
-    localStorage.setItem('cards', JSON.stringify(this.state.cards));
-    // Call the API to add the task on the server
-    /*fetch(`${API_URL}/cards/${cardId}/tasks`, {
-      method: 'post',
-      headers: API_HEADERS,
-      body: JSON.stringify(newTask)
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        // When the server returns the definitive ID
-        // used for the new Task on the server, update it on React
-        newTask.id=responseData.id;
-        this.setState({cards:nextState});
-      });*/
+    this.updateStorage();
   }
 
   deleteTask(cardId, taskId, taskIndex) {
     // Find the index of the card
-    let cardIndex = this.state.cards.findIndex((card) => card.id === cardId);
+    let cardIndex = this.findIndex(cardId);
     // Create a new object without the task
     let nextState = update(this.state.cards, {
       [cardIndex]: {
@@ -85,17 +83,12 @@ class KanbanBoardContainer extends Component {
     // set the component state to the mutated object
     this.setState({cards: nextState});
     // for local development using localstorage
-    localStorage.setItem('cards', JSON.stringify(this.state.cards));
-    // Call the API to remove the task on the server
-    /*fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
-      method: 'delete',
-      headers: API_HEADERS
-    });*/
+    this.updateStorage();
   }
 
   toggleTask(cardId, taskId, taskIndex) {
     // Find the index of the card
-    let cardIndex = this.state.cards.findIndex((card) => card.id === cardId);
+    let cardIndex = this.findIndex(cardId);
     // Save a reference to the task' done value to its opposite
     let newDoneValue;
     let nextState = update(this.state.cards, {
@@ -113,13 +106,48 @@ class KanbanBoardContainer extends Component {
     // set the component state to the mutated object
     this.setState({cards: nextState});
     // for local development using localstorage
-    localStorage.setItem('cards', JSON.stringify(this.state.cards));
-    // Call the API to toggle the task on the server
-    /*fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
-      method: 'put',
-      headers: API_HEADERS,
-      body: JSON.stringify({done:newDoneValue})
-    });*/
+    this.updateStorage();
+  }
+
+  updateCardStatus(cardId, listId) {
+    // Find the index of the card
+    let cardIndex = this.findIndex(cardId);
+    // Get the current card
+    let card = this.state.cards[cardIndex];
+    // Only proceed if hovering over a different list
+    if (card.status !== listId) {
+      // set the component state to the mutated object
+      this.setState(update(this.state, {
+        cards: {
+          [cardIndex]: {
+            status: {$set: listId}
+          }
+        }
+      }));
+      // for local development using localstorage
+      this.updateStorage();
+    }
+  }
+
+  updateCardPosition(cardId, afterId) {
+    // Only proceed if hovering over a different card
+    if (cardId !== afterId) {
+      // Find the index of the card
+      let cardIndex = this.findIndex(cardId);
+      // Get the current card
+      let card = this.state.cards[cardIndex];
+      // Find the index of the card the user is hovering over
+      let afterIndex = this.state.cards.findIndex((card)=> card.id === afterId);
+      // Use splice to remove the card and reinsert it at the new index
+      this.setState(update(this.state, {
+        cards: {
+          $splice: [
+            [cardIndex, 1],
+            [afterIndex, 0, card]
+          ]
+        }
+      }));
+    }
   }
 
   render() {
@@ -128,6 +156,10 @@ class KanbanBoardContainer extends Component {
       toggle: this.toggleTask.bind(this),
       delete: this.deleteTask.bind(this),
       add: this.addTask.bind(this)
+    }}
+    cardCallbacks={{
+      updateStatus: this.updateCardStatus.bind(this),
+      updatePosition: this.updateCardPosition.bind(this)
     }}/>
   }
 
