@@ -9,6 +9,7 @@
   border: 1px solid $color_bon_jour_approx;
   border-radius: 3px;
   box-shadow: 0 1px 0 $black_25;
+  cursor: move;
 }
 .card-to-do {
   @include card-border(blue);

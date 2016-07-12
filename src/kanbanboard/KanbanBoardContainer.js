@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import KanbanBoard from './KanbanBoard';
 import 'whatwg-fetch';
 import 'babel-polyfill';
+import throttle from '../utils/throttle';
 import update from 'react-addons-update';
 
 const API_URL = "store.json";
@@ -16,6 +17,10 @@ class KanbanBoardContainer extends Component {
     this.state = {
       cards: []
     }
+    // Only call updateCardStatus when arguments change
+    this.updateCardStatus = throttle(this.updateCardStatus.bind(this));
+    // Call updateCardPosition at max every 500ms (or when arguments change)
+    this.updateCardPosition = throttle(this.updateCardPosition.bind(this), 500);
   }
 
   findIndex(cardId) {
