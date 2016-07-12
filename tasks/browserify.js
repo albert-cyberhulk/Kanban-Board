@@ -19,7 +19,8 @@ module.exports = {
       },
       transform: [
         ['babelify', {
-          presets: ['es2015', 'react']
+          'presets': ['es2015', 'react'],
+          'plugins': ["transform-object-rest-spread"]
         }]
       ]
     },
