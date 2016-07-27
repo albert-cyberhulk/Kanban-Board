@@ -35,7 +35,7 @@ class Checklist extends Component {
         </ul>
         <form className="form-inline add-task">
           <div className="form-group">
-            <label className="sr-only" for="exampleInputAmount">
+            <label className="sr-only" htmlFor="exampleInputAmount">
               Amount (in dollars)</label>
             <div className="input-group ">
               <div className="input-group-addon">

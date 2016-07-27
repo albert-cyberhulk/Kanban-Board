@@ -10,27 +10,27 @@ class NewCard extends Component {
       status: 'todo',
       tasks: []
     });
-    handleChange(field, value) {
-      this.setState({
-        [field]: value
-      });
-    }
-    handleSubmit(e) {
-      e.preventDefault();
-      this.props.cardCallbacks.addCard(this.state);
-      this.props.history.pushState(null, '/');
-    }
-    handleClose(e) {
-      this.props.history.pushState(null, '/');
-    }
-    render() {
-      return (
-        <CardForm draftCard={this.state} buttonLabel="Create Card"
-                  handleChange={this.handleChange.bind(this)}
-                  handleSubmit={this.handleSubmit.bind(this)}
-                  handleClose={this.handleClose.bind(this)} />
-      );
-    }
+  }
+  handleChange(field, value) {
+    this.setState({
+      [field]: value
+    });
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.cardCallbacks.addCard(this.state);
+    this.props.history.pushState(null, '/');
+  }
+  handleClose(e) {
+    this.props.history.pushState(null, '/');
+  }
+  render() {
+    return (
+      <CardForm draftCard={this.state} buttonLabel="Create Card"
+                handleChange={this.handleChange.bind(this)}
+                handleSubmit={this.handleSubmit.bind(this)}
+                handleClose={this.handleClose.bind(this)} />
+    );
   }
 }
 
