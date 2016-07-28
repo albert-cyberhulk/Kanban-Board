@@ -4,7 +4,7 @@
   background: $white;
   width: 100%;
   padding: 10px 10px 10px 15px;
-  margin: 0 0 10px 0;
+  margin: 0 0 10px;
   overflow: auto;
   border: 1px solid $color_bon_jour_approx;
   border-radius: 3px;
@@ -26,11 +26,24 @@
   cursor: pointer;
   padding-left: 1em;
 }
-
 .folder-open {
   @include font-icon("\f07c");
 }
-
 .folder-closed {
   @include font-icon("\f07b");
+}
+.card__edit {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0;
+  transition: opacity 0.25s ease-in;
+}
+.card:hover .card__edit {
+  opacity: 1;
+}
+.card__edit a {
+  text-decoration: none;
+  color: #999;
+  font-size: 17px;
 }
