@@ -1,6 +1,4 @@
 # React-Boilerplate
-Boilerplate for easy ReactJs project bootstrap
+Kanban Board application built with ReactJS
 
-On Dev Environment run "npm install --production"
-
-to install only neeeded dependencies
+Run "grunt serve" task to make it work on local machine
