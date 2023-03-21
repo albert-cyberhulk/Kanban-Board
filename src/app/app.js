@@ -5,6 +5,13 @@
  */
 
 
+/**
+ * This code is written in JavaScript using the React library and is responsible for rendering the Kanban Board application in a web browser.
+ * Here's a breakdown of what's happening:
+ * The code imports necessary modules and components from various files, including React, ReactDOM, React Router, and several application-specific components.
+ */
+ 
+
 import React from 'React';
 import {render} from 'react-dom';
 import {Router, Route} from 'react-router';
